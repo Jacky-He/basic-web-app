@@ -72,6 +72,30 @@ function square_cube(query: string): string {
   return "";
 }
 
+function isPrime(num: number): boolean {
+  if (num < 0) return false; 
+  if (num == 0) return false;
+  if (num == 1) return false;
+  let cnt = 0;
+  for (let i = 1; i <= num; i++) {
+    if (num % i == 0) cnt++;
+  }
+  return cnt == 2;
+}
+
+function format(list: number[]): string {
+  return list.join(",");
+}
+
+function get_primes(query: string): string {
+  let nums = get_all_nums_helper(query);
+  let res = []
+  for (let i = 0; i < nums.length; i++) {
+    if (isPrime(nums[i])) res.push(nums[i]);
+  }
+  return format(res);
+}
+
 export default function QueryProcessor(query: string): string {
   if (query == "What is your name?") {
     return "JK";
@@ -91,6 +115,10 @@ export default function QueryProcessor(query: string): string {
 
   if (query.includes("square") && query.includes("cube")) {
     return square_cube(query);
+  }
+
+  if (query.includes("primes")) {
+    return get_primes(query);
   }
 
   let shakespeare = "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
