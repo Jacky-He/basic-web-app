@@ -47,6 +47,11 @@ function minus(query: string): string {
   return (nums[0] - nums[1]).toString();
 }
 
+function power(query: string): string {
+  let nums = get_all_nums_helper(query);
+  return (nums[0]**nums[1]).toString();
+}
+
 function is_square(num: number): boolean {
   let sqrt;
   sqrt = Math.round(Math.sqrt(num));
@@ -124,6 +129,10 @@ export default function QueryProcessor(query: string): string {
 
   if (query.includes("What is") && query.includes("minus")) {
     return minus(query);
+  }
+
+  if (query.includes("What is") && query.includes("power")) {
+    return power(query);
   }
 
   if (query.includes("square") && query.includes("cube")) {
