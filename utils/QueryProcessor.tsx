@@ -30,13 +30,21 @@ function largest(str: string) {
 
 function addition(query: string): string {
   let nums = get_all_nums_helper(query);
-  console.log(nums);
-  return (nums[0] + nums[1]).toString();
+  let res = 0;
+  for (let i = 0; i < nums.length; i++) {
+    res += nums[i];
+  }
+  return res.toString();
 }
 
 function multiply(query: string): string {
   let nums = get_all_nums_helper(query);
   return (nums[0] * nums[1]).toString();
+}
+
+function minus(query: string): string {
+  let nums = get_all_nums_helper(query);
+  return (nums[0] - nums[1]).toString();
 }
 
 function is_square(num: number): boolean {
@@ -96,6 +104,7 @@ function get_primes(query: string): string {
   return format(res);
 }
 
+
 export default function QueryProcessor(query: string): string {
   if (query == "What is your name?") {
     return "JK";
@@ -111,6 +120,10 @@ export default function QueryProcessor(query: string): string {
 
   if (query.includes("What is") && query.includes("multiplied")) {
     return multiply(query);
+  }
+
+  if (query.includes("What is") && query.includes("minus")) {
+    return minus(query);
   }
 
   if (query.includes("square") && query.includes("cube")) {
