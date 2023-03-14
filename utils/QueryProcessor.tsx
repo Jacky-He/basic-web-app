@@ -1,6 +1,3 @@
-
-
-
 function get_all_nums_helper(str: string) {
   let arr = str.split(/\W+/);
   console.log(arr);
@@ -12,17 +9,6 @@ function get_all_nums_helper(str: string) {
   }
   return res;
 }
-
-// function get_all_nums(str: string) {
-//   let arr = str.split("/[^0-9\-]/");
-//   let res = []
-//   for (let i = 0; i < arr.length; i++) {
-//     const parsed = parseInt(arr[i], 10);
-//     if (isNaN(parsed)) continue
-//     res.push(parsed);
-//   }
-//   return res;
-// }
 
 function largest(str: string) {
   let arr = str.split(":");
@@ -53,6 +39,39 @@ function multiply(query: string): string {
   return (nums[0] * nums[1]).toString();
 }
 
+function is_square(num: number): boolean {
+  let sqrt;
+  sqrt = Math.round(Math.sqrt(num));
+  if(sqrt*sqrt == num) {
+    return true;
+  }
+  return false;
+}
+
+function is_cube(num: number): boolean {
+  let cube_root;
+  cube_root = Math.round(Math.cbrt(num));
+
+  // If cube of cube_root is equals to N,
+  // then print Yes Else print No
+  if ((cube_root * cube_root * cube_root) == num) {
+    return true;
+  }
+  else {
+    return false; 
+  }
+}
+
+function square_cube(query: string): string {
+  let nums = get_all_nums_helper(query);
+  for (let i = 0; i <= nums.length; i++) {
+    if (is_square(nums[i]) && is_cube(nums[i])) {
+      return nums[i].toString();
+    }
+  }
+  return "";
+}
+
 export default function QueryProcessor(query: string): string {
   if (query == "What is your name?") {
     return "JK";
@@ -68,6 +87,10 @@ export default function QueryProcessor(query: string): string {
 
   if (query.includes("What is") && query.includes("multiplied")) {
     return multiply(query);
+  }
+
+  if (query.includes("square") && query.includes("cube")) {
+    return square_cube(query);
   }
 
   let shakespeare = "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
