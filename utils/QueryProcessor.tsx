@@ -1,11 +1,28 @@
 
-function get_all_nums(str: string) {
-  let arr = str.split("/[^0-9\-]/");
+
+
+function get_all_nums_helper(str: string) {
+  let arr = str.split(/\W+/);
+  console.log(arr);
   let res = []
   for (let i = 0; i < arr.length; i++) {
-    res.push(arr[i])
+    const parsed = parseInt(arr[i], 10);
+    if (isNaN(parsed)) continue
+    res.push(parsed);
   }
+  return res;
 }
+
+// function get_all_nums(str: string) {
+//   let arr = str.split("/[^0-9\-]/");
+//   let res = []
+//   for (let i = 0; i < arr.length; i++) {
+//     const parsed = parseInt(arr[i], 10);
+//     if (isNaN(parsed)) continue
+//     res.push(parsed);
+//   }
+//   return res;
+// }
 
 function largest(str: string) {
   let arr = str.split(":");
@@ -25,6 +42,17 @@ function largest(str: string) {
 }
 
 
+function addition(query: string): string {
+  let nums = get_all_nums_helper(query);
+  console.log(nums);
+  return (nums[0] + nums[1]).toString();
+}
+
+function multiply(query: string): string {
+  let nums = get_all_nums_helper(query);
+  return (nums[0] * nums[1]).toString();
+}
+
 export default function QueryProcessor(query: string): string {
   if (query == "What is your name?") {
     return "JK";
@@ -34,9 +62,13 @@ export default function QueryProcessor(query: string): string {
     return largest(query);
   }
 
-  // if (query.includes("What is	") && query.includes("plus")) {
-  //   return addition(query);
-  // }
+  if (query.includes("What is") && query.includes("plus")) {
+    return addition(query);
+  }
+
+  if (query.includes("What is") && query.includes("multiplied")) {
+    return multiply(query);
+  }
 
   let shakespeare = "William Shakespeare (26 April 1564 - 23 April 1616) was an " +
   "English poet, playwright, and actor, widely regarded as the greatest " +
