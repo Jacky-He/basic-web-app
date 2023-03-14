@@ -1,5 +1,3 @@
-import Parser from 'expr-eval';
-
 
 function get_all_nums(str: string) {
   let arr = str.split("/[^0-9\-]/");
