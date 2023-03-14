@@ -1,6 +1,6 @@
 # fly.toml file generated for red-sun-8854 on 2023-03-14T15:40:49-04:00
 
-app = "red-sun-8854"
+app = "cold-fire-3465"
 kill_signal = "SIGINT"
 kill_timeout = 5
 primary_region = "iad"
